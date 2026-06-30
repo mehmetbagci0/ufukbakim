@@ -27,8 +27,9 @@ class Building {
 
   String get fullAddress {
     final parts = <String>[address, district, city];
-    if (neighborhood != null && neighborhood!.trim().isNotEmpty) {
-      parts.insert(1, neighborhood!.trim());
+    final neighborhoodText = neighborhood?.trim();
+    if (neighborhoodText != null && neighborhoodText.isNotEmpty) {
+      parts.insert(1, neighborhoodText);
     }
     return parts.where((part) => part.trim().isNotEmpty).join(', ');
   }
