@@ -39,11 +39,11 @@ class Building {
     String? city,
     String? district,
     String? groupId,
-    String? neighborhood,
-    double? latitude,
-    double? longitude,
-    String? contactPhone,
-    String? notes,
+    Object? neighborhood = _noValue,
+    Object? latitude = _noValue,
+    Object? longitude = _noValue,
+    Object? contactPhone = _noValue,
+    Object? notes = _noValue,
   }) {
     return Building(
       id: id,
@@ -52,11 +52,21 @@ class Building {
       city: city ?? this.city,
       district: district ?? this.district,
       groupId: groupId ?? this.groupId,
-      neighborhood: neighborhood ?? this.neighborhood,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-      contactPhone: contactPhone ?? this.contactPhone,
-      notes: notes ?? this.notes,
+      neighborhood: identical(neighborhood, _noValue)
+          ? this.neighborhood
+          : neighborhood as String?,
+      latitude: identical(latitude, _noValue)
+          ? this.latitude
+          : latitude as double?,
+      longitude: identical(longitude, _noValue)
+          ? this.longitude
+          : longitude as double?,
+      contactPhone: identical(contactPhone, _noValue)
+          ? this.contactPhone
+          : contactPhone as String?,
+      notes: identical(notes, _noValue) ? this.notes : notes as String?,
     );
   }
 }
+
+const Object _noValue = Object();
