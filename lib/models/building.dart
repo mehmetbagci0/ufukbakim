@@ -1,0 +1,62 @@
+class Building {
+  Building({
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.city,
+    required this.district,
+    required this.groupId,
+    this.neighborhood,
+    this.latitude,
+    this.longitude,
+    this.contactPhone,
+    this.notes,
+  });
+
+  final String id;
+  final String name;
+  final String address;
+  final String city;
+  final String district;
+  final String groupId;
+  final String? neighborhood;
+  final double? latitude;
+  final double? longitude;
+  final String? contactPhone;
+  final String? notes;
+
+  String get fullAddress {
+    final parts = <String>[address, district, city];
+    if (neighborhood != null && neighborhood!.trim().isNotEmpty) {
+      parts.insert(1, neighborhood!.trim());
+    }
+    return parts.where((part) => part.trim().isNotEmpty).join(', ');
+  }
+
+  Building copyWith({
+    String? name,
+    String? address,
+    String? city,
+    String? district,
+    String? groupId,
+    String? neighborhood,
+    double? latitude,
+    double? longitude,
+    String? contactPhone,
+    String? notes,
+  }) {
+    return Building(
+      id: id,
+      name: name ?? this.name,
+      address: address ?? this.address,
+      city: city ?? this.city,
+      district: district ?? this.district,
+      groupId: groupId ?? this.groupId,
+      neighborhood: neighborhood ?? this.neighborhood,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      contactPhone: contactPhone ?? this.contactPhone,
+      notes: notes ?? this.notes,
+    );
+  }
+}
